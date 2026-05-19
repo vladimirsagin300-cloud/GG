@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пополнение кошелька — GamerGate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-block">
+                <img src="img/logo.png" alt="Логотип" class="logo-img">
+            </a>
+            <div class="nav-right">
+                <span class="balance">Баланс (4200,00 р.)</span>
+                <a href="#">Список желаемого</a>
+                <a href="purchase.html" class="cart-btn">
+                    <img src="img/cart.png" alt="Корзина">
+                    <span id="cart-count">0</span>
+                </a>
+                <div class="search-bar">
+                    <input type="text" placeholder="Поиск">
+                </div>
+                <div class="profile-zone">
+                    <img src="img/user.jpeg" alt="Профиль" class="profile-avatar">
+                    <span>Gaben</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <div class="wallet-container">
+            <h2 class="wallet-title">Пополнение баланса</h2>
+            
+            <div class="wallet-card panel-dark">
+                <div class="wallet-current-info">
+                    <span>Текущий баланс:</span>
+                    <strong id="wallet-current-amount">4200,00 р.</strong>
+                </div>
+
+                <form id="wallet-deposit-form">
+                    <div class="form-group">
+                        <label for="deposit-amount">Сумма пополнения (руб.)</label>
+                        <input type="number" id="deposit-amount" min="10" max="100000" placeholder="Введите сумму" required>
+                    </div>
+
+                    <div class="payment-methods-title">Выберите способ оплаты</div>
+                    <div class="payment-methods-grid">
+                        <label class="method-card active">
+                            <input type="radio" name="payment_method" value="card" checked>
+                            <img src="img/card.png" alt="Карта" class="method-img">
+                            <span class="method-name">Банковская карта</span>
+                        </label>
+                        <label class="method-card">
+                            <input type="radio" name="payment_method" value="sbp">
+                            <img src="img/SBP.svg" alt="СБП" class="method-img">
+                            <span class="method-name">СБП</span>
+                        </label>
+                        <label class="method-card">
+                            <input type="radio" name="payment_method" value="crypto">
+                            <img src="img/crypto-icon.png" alt="Криптовалюта" class="method-img">
+                            <span class="method-name">Криптовалюта</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-wallet-action">Перейти к оплате</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <p>В нашем интернет-магазине представлен огромный выбор цифровых копий видеоигр от инди-игр до крупных ААА проектов.</p>
+                <p>Все товары представленные в магазине в виде ключей для активации в Steam, Rockstar Games, Uplay, EA и др.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Пользователям</h4>
+                <ul>
+                    <li><a href="#">Профиль</a></li>
+                    <li><a href="#">Список желаемого</a></li>
+                    <li><a href="purchase.html">Корзина</a></li>
+                    <li><a href="wallet.html">Кошелек</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Обратная связь</h4>
+                <ul>
+                    <li><a href="#">Тех. Поддержка</a></li>
+                    <li><a href="#">Соц. Сети</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>По рекламе</h4>
+                <ul>
+                    <li><a href="mailto:GamerGate@gmail.com">Email: GamerGate@gmail.com</a></li>
+                    <li><a href="tel:+79517425534">Телефон: +7 (951) 742-55-34</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2026 Gamer-Gate (GG)</p>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script>
+        document.getElementById('wallet-deposit-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('deposit-amount').value);
+            
+            if (amount) {
+                const currentBalance = parseFloat(localStorage.getItem("wallet_balance") || "4200.00");
+                const newBalance = currentBalance + amount;
+                
+                localStorage.setItem("wallet_balance", newBalance.toFixed(2));
+                
+                if (typeof updateBalanceDisplay === "function") {
+                    updateBalanceDisplay();
+                }
+
+                const actionBtn = document.querySelector('.btn-wallet-action');
+                actionBtn.textContent = 'Баланс успешно пополнен!';
+                actionBtn.style.backgroundColor = '#28a745';
+                actionBtn.style.color = '#ffffff';
+                actionBtn.disabled = true;
+
+                setTimeout(function() {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        });
+
+        const methods = document.querySelectorAll('.method-card');
+        methods.forEach(method => {
+            method.addEventListener('click', function() {
+                methods.forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

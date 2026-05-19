@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerGate — Главная</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-block">
+                <img src="img/logo.png" alt="Логотип" class="logo-img">
+            </a>
+            <div class="nav-right">
+                <span class="balance">Баланс (4200,00 р.)</span>
+                <a href="#">Список желаемого</a>
+                <a href="purchase.html" class="cart-btn">
+                    <img src="img/cart.png" alt="Корзина">
+                    <span id="cart-count">0</span>
+                </a>
+                <div class="search-bar">
+                    <input type="text" placeholder="Поиск">
+                </div>
+                <div class="profile-zone">
+                    <img src="img/user.jpeg" alt="Профиль" class="profile-avatar">
+                    <span>Gaben</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <div class="index-grid">
+            
+            <aside class="panel-dark friends-block">
+                <h3>Друзья в сети</h3>
+                <div class="friend-list-inner">
+                    <div class="friend-item">
+                        <div class="friend-avatar-wrapper">
+                            <img src="img/friend1.jpg" alt="" class="friend-avatar">
+                        </div>
+                        <div class="friend-info"><h4>WaaYD1</h4><p>Counter-Strike 3 [Beta]</p></div>
+                    </div>
+                    <div class="friend-item">
+                        <div class="friend-avatar-wrapper">
+                            <img src="img/friend2.jpg" alt="" class="friend-avatar">
+                        </div>
+                        <div class="friend-info"><h4>emo:Adiks58</h4><p>Grand Theft Auto VI [Ultra Beta]</p></div>
+                    </div>
+                    <div class="friend-item">
+                        <div class="friend-avatar-wrapper">
+                            <img src="img/friend3.jpg" alt="" class="friend-avatar">
+                        </div>
+                        <div class="friend-info"><h4>Zekich</h4><p>Furry-Musculs</p></div>
+                    </div>
+                    <div class="friend-item">
+                        <div class="friend-avatar-wrapper">
+                            <img src="img/friend4.jpg" alt="" class="friend-avatar">
+                        </div>
+                        <div class="friend-info"><h4>Брудское</h4><p>Dota 2</p></div>
+                    </div>
+                    <div class="friend-item">
+                        <div class="friend-avatar-wrapper">
+                            <img src="img/friend5.jpg" alt="" class="friend-avatar">
+                        </div>
+                        <div class="friend-info"><h4>Freeman</h4><p>Half-Life 3</p></div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="center-column">
+                <h2 class="section-title">Рекомендуемое</h2>
+                <div class="slider-container">
+                    <button class="slider-arrow">&lt;</button>
+                    <a href="product.html" class="hero-banner">
+                        <img src="img/rdr2.jpg" class="hero-img" alt="RDR2">
+                        <div class="hero-details">
+                            <h2>Red Dead Redemption II</h2>
+                            <div class="hero-price-zone">
+                                <div class="hero-price">3500 р.</div>
+                                <span class="btn-prime">Подробнее</span>
+                            </div>
+                        </div>
+                    </a>
+                    <button class="slider-arrow">&gt;</button>
+                </div>
+
+                <h2 class="section-title">Популярное</h2>
+                <div class="list-rows">
+                    <a href="standoff2.html" class="game-row-link">
+                        <div class="row-game">
+                            <img src="img/standoff2.jpg" class="row-game-img" alt="Standoff 2">
+                            <div class="row-title">Standoff 2</div>
+                            <div class="row-meta">
+                                <span class="row-price">Бесплатно</span>
+                                <button class="btn-prime add-to-cart-btn" data-id="standoff2" data-name="Standoff 2" data-price="0" data-img="img/standoff2.jpg" onclick="event.preventDefault();">В корзину</button>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="dota2.html" class="game-row-link">
+                        <div class="row-game">
+                            <img src="img/dota2.jpg" class="row-game-img" alt="Dota 2">
+                            <div class="row-title">Dota 2</div>
+                            <div class="row-meta">
+                                <span class="row-price">Бесплатно</span>
+                                <button class="btn-prime add-to-cart-btn" data-id="dota2" data-name="Dota 2" data-price="0" data-img="img/dota2.jpg" onclick="event.preventDefault();">В корзину</button>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="gtav.html" class="game-row-link">
+                        <div class="row-game">
+                            <img src="img/gta5v.png" class="row-game-img" alt="GTA V">
+                            <div class="row-title">Grand Theft Auto V</div>
+                            <div class="row-meta">
+                                <span class="row-price">1100 р.</span>
+                                <button class="btn-prime add-to-cart-btn" data-id="gta5" data-name="Grand Theft Auto V" data-price="1100" data-img="img/gtav.png" onclick="event.preventDefault();">В корзину</button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <aside class="panel-dark news-block">
+                <h3>Новости</h3>
+                <div class="news-list-inner">
+                    <div class="news-item">
+                        <div class="news-date">07/02/2026</div>
+                        <div class="news-text">GTA 6 ВЫЙДЕТ НЕ ЗАВТРА</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">06/02/2026</div>
+                        <div class="news-text">CS 3 ВЫПУСТЯТ ЧЕРЕЗ 15 ЛЕТ</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">04/02/2026</div>
+                        <div class="news-text">DOTA 2 УДАЛЯТ ЗАВТРА</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">01/01/2026</div>
+                        <div class="news-text">Данила Трунов новый игрок FAZE Clan</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">31/12/2025</div>
+                        <div class="news-text">Дмитрий Широких в край офигел и...</div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <p>В нашем интернет-магазине представлен огромный выбор цифровых копий видеоигр от инди-игр до крупных ААА проектов.</p>
+                <p>Все товары представленные в магазине в виде ключей для активации в Steam, Rockstar Games, Uplay, EA и др.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Пользователям</h4>
+                <ul>
+                    <li><a href="#">Профиль</a></li>
+                    <li><a href="#">Список желаемого</a></li>
+                    <li><a href="purchase.html">Корзина</a></li>
+                    <li><a href="#">Кошелек</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Обратная связь</h4>
+                <ul>
+                    <li><a href="#">Тех. Поддержка</a></li>
+                    <li><a href="#">Соц. Сети</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>По рекламе</h4>
+                <ul>
+                    <li><a href="mailto:GamerGate@gmail.com">Email: GamerGate@gmail.com</a></li>
+                    <li><a href="tel:+79517425534">Телефон: +7 (951) 742-55-34</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2026 Gamer-Gate (GG)</p>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>

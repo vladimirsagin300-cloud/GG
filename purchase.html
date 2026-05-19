@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница покупки — GamerGate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-block">
+                <img src="img/logo.png" alt="Логотип" class="logo-img">
+            </a>
+            <div class="nav-right">
+                <span class="balance">Баланс (4200,00 р.)</span>
+                <a href="#">Список желаемого</a>
+                <a href="purchase.html" class="cart-btn">
+                    <img src="img/cart.png" alt="Корзина">
+                    <span id="cart-count">0</span>
+                </a>
+                <div class="search-bar">
+                    <input type="text" placeholder="Поиск">
+                </div>
+                <div class="profile-zone">
+                    <img src="img/user.jpeg" alt="Профиль" class="profile-avatar">
+                    <span>Gaben</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <div class="checkout-wrapper">
+            
+            <h2 class="checkout-main-title">Страница покупки</h2>
+
+            <div class="checkout-columns">
+                
+                <div class="checkout-panel">
+                    <h3>Выбор способа оплаты</h3>
+                    <div class="payment-methods">
+                        
+                        <label class="method-option">
+                            <input type="radio" name="payment" checked>
+                            <div class="method-box">
+                                <img src="img/card_saved.png" alt="Использовать привязанную карту">
+                                <span>Использовать привязанную карту</span>
+                            </div>
+                        </label>
+
+                        <label class="method-option">
+                            <input type="radio" name="payment">
+                            <div class="method-box">
+                                <img src="img/card_new.png" alt="Привязка новой карты">
+                                <span>Привязка новой карты</span>
+                            </div>
+                        </label>
+
+                        <label class="method-option">
+                            <input type="radio" name="payment">
+                            <div class="method-box">
+                                <img src="img/wallet_balance.png" alt="Использовать баланс кошелька">
+                                <span>Использовать баланс кошелька</span>
+                            </div>
+                        </label>
+
+                    </div>
+                    <button class="btn-checkout-action">Выбрать</button>
+                </div>
+
+                <div class="checkout-panel">
+                    <h3>Оплата и получение кода</h3>
+                    <div class="email-form-group">
+                        <label for="checkout-email">Email:</label>
+                        <input type="email" id="checkout-email" value="Gaben3002012@gmail.com">
+                    </div>
+                    <div style="margin: 20px 0; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 15px;">
+                        <span style="font-size: 18px; font-weight: bold;">Итого к оплате:</span>
+                        <span id="total-price" style="font-size: 22px; font-weight: bold;">0 р.</span>
+                    </div>
+                    <button class="btn-checkout-action">Оплатить</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <p>В нашем интернет-магазине представлен огромный выбор цифровых копий видеоигр от инди-игр до крупных ААА проектов.</p>
+                <p>Все товары представленные в магазине в виде ключей для активации в Steam, Rockstar Games, Uplay, EA и др.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Пользователям</h4>
+                <ul>
+                    <li><a href="#">Профиль</a></li>
+                    <li><a href="#">Список желаемого</a></li>
+                    <li><a href="purchase.html">Корзина</a></li>
+                    <li><a href="#">Кошелек</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Обратная связь</h4>
+                <ul>
+                    <li><a href="#">Тех. Поддержка</a></li>
+                    <li><a href="#">Соц. Сети</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>По рекламе</h4>
+                <ul>
+                    <li><a href="mailto:GamerGate@gmail.com">Email: GamerGate@gmail.com</a></li>
+                    <li><a href="tel:+79517425534">Телефон: +7 (951) 742-55-34</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2026 Gamer-Gate (GG)</p>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>
