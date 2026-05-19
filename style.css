@@ -1187,7 +1187,18 @@ footer {
 .burger-menu-btn {
     display: none;
 }
+body.deposit-page {
+    background-image: url('img/ogurec.webp'), linear-gradient(180deg, #000000 0%, #ffffff 100%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 98% center, center;
+    background-size: 350px auto, cover;
+    background-attachment: fixed, fixed;
+}
 
+.checkout-wrapper {
+    position: relative;
+    z-index: 2;
+}
 @media (max-width: 768px) {
     .burger-menu-btn {
         display: flex !important;
