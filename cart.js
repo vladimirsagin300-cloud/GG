@@ -1,4 +1,63 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const gamesDatabase = [
+    { name: "Red Dead Redemption 2", url: "product.html", img: "img/rdr2.webp" },
+    { name: "Standoff 2", url: "standoff2.html", img: "img/standoff2.webp" },
+    { name: "Dota 2", url: "dota2.html", img: "img/dota2.webp" },
+    { name: "Grand Theft Auto V", url: "gtav.html", img: "img/gta5v.webp" }
+];
+
+const searchInput = document.querySelector(".search-bar input");
+const searchBarContainer = document.querySelector(".search-bar");
+
+if (searchInput && searchBarContainer) {
+    searchBarContainer.style.position = "relative";
+
+    const resultsContainer = document.createElement("div");
+    resultsContainer.className = "search-results";
+    searchBarContainer.appendChild(resultsContainer);
+
+    searchInput.addEventListener("input", function() {
+        const query = this.value.toLowerCase().trim();
+        resultsContainer.innerHTML = "";
+
+        if (query.length > 0) {
+            const filteredGames = gamesDatabase.filter(game =>
+                game.name.toLowerCase().includes(query)
+            );
+
+            if (filteredGames.length > 0) {
+                resultsContainer.style.display = "block";
+                filteredGames.forEach(game => {
+                    const item = document.createElement("a");
+                    item.href = game.url;
+                    item.className = "search-result-item";
+                    item.innerHTML = `
+                        <img src="${game.img}" alt="${game.name}">
+                        <span>${game.name}</span>
+                    `;
+                    resultsContainer.appendChild(item);
+                });
+            } else {
+                resultsContainer.style.display = "block";
+                resultsContainer.innerHTML = '<div class="search-no-results">По вашему запросу ничего не найдено</div>';
+            }
+        } else {
+            resultsContainer.style.display = "none";
+        }
+    });
+
+    document.addEventListener("click", function(e) {
+        if (!searchBarContainer.contains(e.target)) {
+            resultsContainer.style.display = "none";
+        }
+    });
+
+    searchInput.addEventListener("focus", function() {
+        if (this.value.trim().length > 0 && resultsContainer.children.length > 0) {
+            resultsContainer.style.display = "block";
+        }
+    });
+}
     if (!localStorage.getItem("wallet_balance")) {
         localStorage.setItem("wallet_balance", "4200.00");
     }
