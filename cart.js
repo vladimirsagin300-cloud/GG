@@ -1,63 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const gamesDatabase = [
-    { name: "Red Dead Redemption 2", url: "product.html", img: "img/rdr2.webp" },
-    { name: "Standoff 2", url: "standoff2.html", img: "img/standoff2.webp" },
-    { name: "Dota 2", url: "dota2.html", img: "img/dota2.webp" },
-    { name: "Grand Theft Auto V", url: "gtav.html", img: "img/gta5v.webp" }
-];
-
-const searchInput = document.querySelector(".search-bar input");
-const searchBarContainer = document.querySelector(".search-bar");
-
-if (searchInput && searchBarContainer) {
-    searchBarContainer.style.position = "relative";
-
-    const resultsContainer = document.createElement("div");
-    resultsContainer.className = "search-results";
-    searchBarContainer.appendChild(resultsContainer);
-
-    searchInput.addEventListener("input", function() {
-        const query = this.value.toLowerCase().trim();
-        resultsContainer.innerHTML = "";
-
-        if (query.length > 0) {
-            const filteredGames = gamesDatabase.filter(game =>
-                game.name.toLowerCase().includes(query)
-            );
-
-            if (filteredGames.length > 0) {
-                resultsContainer.style.display = "block";
-                filteredGames.forEach(game => {
-                    const item = document.createElement("a");
-                    item.href = game.url;
-                    item.className = "search-result-item";
-                    item.innerHTML = `
-                        <img src="${game.img}" alt="${game.name}">
-                        <span>${game.name}</span>
-                    `;
-                    resultsContainer.appendChild(item);
-                });
-            } else {
-                resultsContainer.style.display = "block";
-                resultsContainer.innerHTML = '<div class="search-no-results">По вашему запросу ничего не найдено</div>';
-            }
-        } else {
-            resultsContainer.style.display = "none";
-        }
-    });
-
-    document.addEventListener("click", function(e) {
-        if (!searchBarContainer.contains(e.target)) {
-            resultsContainer.style.display = "none";
-        }
-    });
-
-    searchInput.addEventListener("focus", function() {
-        if (this.value.trim().length > 0 && resultsContainer.children.length > 0) {
-            resultsContainer.style.display = "block";
-        }
-    });
-}
     if (!localStorage.getItem("wallet_balance")) {
         localStorage.setItem("wallet_balance", "4200.00");
     }
@@ -65,7 +6,7 @@ if (searchInput && searchBarContainer) {
     updateBalanceDisplay();
     updateCartCount();
 
-    if (document.querySelector(".checkout-wrapper")) {
+    if (document.querySelector(".checkout-wrapper") && !document.querySelector(".success-wrapper")) {
         renderCartPage();
     }
 
@@ -85,16 +26,15 @@ if (searchInput && searchBarContainer) {
         });
     }
 
-    const buyButtons = document.querySelectorAll(".add-to-cart-btn");
-    buyButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const id = this.getAttribute("data-id");
-            const name = this.getAttribute("data-name");
-            const price = parseFloat(this.getAttribute("data-price"));
-            const img = this.getAttribute("data-img");
-
+    document.body.addEventListener("click", function (e) {
+        if (e.target.classList.contains("add-to-cart-btn")) {
+            e.preventDefault();
+            const id = e.target.getAttribute("data-id");
+            const name = e.target.getAttribute("data-name");
+            const price = parseFloat(e.target.getAttribute("data-price"));
+            const img = e.target.getAttribute("data-img");
             addToCart(id, name, price, img);
-        });
+        }
     });
 
     const payButtons = document.querySelectorAll(".btn-checkout-action");
@@ -127,6 +67,100 @@ if (searchInput && searchBarContainer) {
             });
         }
     });
+
+    const walletForm = document.getElementById('wallet-deposit-form');
+    if (walletForm) {
+        walletForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('deposit-amount').value);
+            
+            if (amount) {
+                const currentBalance = parseFloat(localStorage.getItem("wallet_balance") || "4200.00");
+                const newBalance = currentBalance + amount;
+                
+                localStorage.setItem("wallet_balance", newBalance.toFixed(2));
+                updateBalanceDisplay();
+
+                const actionBtn = document.querySelector('.btn-wallet-action');
+                actionBtn.textContent = 'Баланс успешно пополнен!';
+                actionBtn.style.backgroundColor = '#28a745';
+                actionBtn.style.color = '#ffffff';
+                actionBtn.disabled = true;
+
+                setTimeout(function() {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        });
+
+        const methods = document.querySelectorAll('.method-card');
+        methods.forEach(method => {
+            method.addEventListener('click', function() {
+                methods.forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    }
+
+    const gamesDatabase = [
+        { name: "Red Dead Redemption 2", url: "product.html", img: "img/rdr2.webp" },
+        { name: "Standoff 2", url: "standoff2.html", img: "img/standoff2.webp" },
+        { name: "Dota 2", url: "dota2.html", img: "img/dota2.webp" },
+        { name: "Grand Theft Auto V", url: "gtav.html", img: "img/gta5v.webp" }
+    ];
+
+    const searchInput = document.querySelector(".search-bar input");
+    const searchBarContainer = document.querySelector(".search-bar");
+
+    if (searchInput && searchBarContainer) {
+        searchBarContainer.style.position = "relative";
+
+        const resultsContainer = document.createElement("div");
+        resultsContainer.className = "search-results";
+        searchBarContainer.appendChild(resultsContainer);
+
+        searchInput.addEventListener("input", function() {
+            const query = this.value.toLowerCase().trim();
+            resultsContainer.innerHTML = "";
+
+            if (query.length > 0) {
+                const filteredGames = gamesDatabase.filter(game =>
+                    game.name.toLowerCase().includes(query)
+                );
+
+                if (filteredGames.length > 0) {
+                    resultsContainer.style.display = "block";
+                    filteredGames.forEach(game => {
+                        const item = document.createElement("a");
+                        item.href = game.url;
+                        item.className = "search-result-item";
+                        item.innerHTML = `
+                            <img src="${game.img}" alt="${game.name}">
+                            <span>${game.name}</span>
+                        `;
+                        resultsContainer.appendChild(item);
+                    });
+                } else {
+                    resultsContainer.style.display = "block";
+                    resultsContainer.innerHTML = '<div class="search-no-results">По вашему запросу ничего не найдено</div>';
+                }
+            } else {
+                resultsContainer.style.display = "none";
+            }
+        });
+
+        document.addEventListener("click", function(e) {
+            if (!searchBarContainer.contains(e.target)) {
+                resultsContainer.style.display = "none";
+            }
+        });
+
+        searchInput.addEventListener("focus", function() {
+            if (this.value.trim().length > 0 && resultsContainer.children.length > 0) {
+                resultsContainer.style.display = "block";
+            }
+        });
+    }
 });
 
 function updateBalanceDisplay() {
@@ -148,9 +182,7 @@ function updateBalanceDisplay() {
     });
 }
 
-function getCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
-}
+function getCart() { return JSON.parse(localStorage.getItem("cart")) || []; }
 
 function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -175,7 +207,6 @@ function addToCart(id, name, price, img) {
     } else {
         cart.push({ id, name, price, img, quantity: 1 });
     }
-
     saveCart(cart);
 }
 
@@ -202,7 +233,6 @@ function renderCartPage() {
     }
 
     let total = 0;
-
     cart.forEach(item => {
         const itemPriceTotal = item.price * item.quantity;
         total += itemPriceTotal;
@@ -232,7 +262,7 @@ function renderCartPage() {
     updateTotalPrice(total);
 }
 
-function changeQuantity(id, amount) {
+window.changeQuantity = function(id, amount) {
     let cart = getCart();
     const item = cart.find(item => item.id === id);
 
